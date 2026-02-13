@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nayma - Criar Conta</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .cadastro-container { height: 100vh; display: flex; justify-content: center; align-items: center; background: #000; }
+        .cadastro-box { background-color: rgba(20, 20, 20, 0.95); padding: 50px; border-radius: 10px; width: 100%; max-width: 400px; border: 1px solid #333; }
+        h2 { margin-bottom: 20px; color: white; font-size: 32px; }
+        input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 5px; border: none; background-color: #333; color: white; font-size: 16px; }
+        .btn-registrar { width: 100%; padding: 15px; background-color: #e50914; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 18px; }
+        #mensagem-erro { color: #e50914; font-size: 14px; margin-bottom: 15px; display: none; }
+    </style>
+</head>
+<body>
+
+    <header><div class="logo">NAYMA</div></header>
+
+    <div class="cadastro-container">
+        <div class="cadastro-box">
+            <h2>Cadastrar</h2>
+            
+            <p id="mensagem-erro">Este e-mail já possui uma conta no site Nayma.</p>
+
+            <form id="form-cadastro" action="https://formspree.io/f/xaqdejbz" method="POST">
+                <input type="text" name="nome" placeholder="Nome completo" required>
+                <input type="email" id="email-input" name="email" placeholder="E-mail" required>
+                <input type="password" name="senha" placeholder="Criar palavra-passe" required>
+                
+                <input type="hidden" name="_next" value="https://site013.github.io/Naymafilme/login.html">
+
+                <button type="submit" class="btn-registrar">Criar Conta</button>
+            </form>
+            <p style="margin-top: 20px; color: #737373;">Já tem conta? <a href="login.html" style="color: white; text-decoration: none;">Entrar agora.</a></p>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('form-cadastro');
+        const emailInput = document.getElementById('email-input');
+        const erroMsg = document.getElementById('mensagem-erro');
+
+        form.addEventListener('submit', function(e) {
+            // Pegar a lista de e-mails já cadastrados (simulação local)
+            let usuarios = JSON.parse(localStorage.getItem('usuarios_nayma') || "[]");
+            
+            if (usuarios.includes(emailInput.value)) {
+                e.preventDefault(); // Para o envio para o Formspree
+                erroMsg.style.display = 'block'; // Mostra o erro vermelho
+            } else {
+                // Se o e-mail for novo, salva na lista e deixa enviar
+                usuarios.push(emailInput.value);
+                localStorage.setItem('usuarios_nayma', JSON.stringify(usuarios));
+            }
+        });
+    </script>
+
+</body>
+</html>

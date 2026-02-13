@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Nayma - Assistir</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .player-container {
+            margin-top: 100px;
+            text-align: center;
+            padding: 20px;
+        }
+        video {
+            width: 80%;
+            max-width: 1000px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
+        }
+        .btn-voltar {
+            display: inline-block;
+            margin-top: 20px;
+            color: white;
+            text-decoration: none;
+            background: #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header><div class="logo">NAYMA</div></header>
+
+    <div class="player-container">
+        <h2 id="video-titulo">Carregando...</h2>
+        
+        <video id="video-player" controls autoplay>
+            <source id="video-src" src="" type="video/mp4">
+            Seu navegador não suporta este vídeo.
+        </video>
+
+        <br>
+        <a href="index.html" class="btn-voltar">← Voltar para o Início</a>
+    </div>
+
+    <script>
+        // Lógica para pegar o vídeo do link e colocar no player
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoArquivo = urlParams.get('video');
+        const videoTitulo = urlParams.get('titulo');
+
+        if (videoArquivo) {
+            document.getElementById('video-src').src = videoArquivo;
+            document.getElementById('video-player').load();
+            document.getElementById('video-titulo').innerText = videoTitulo;
+        }
+    </script>
+</body>
+</html>

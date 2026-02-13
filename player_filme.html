@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Nayma - Assistir Filme</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background-color: #000; color: white; text-align: center; font-family: Arial, sans-serif; margin: 0; }
+        .player-container { margin-top: 50px; padding: 20px; }
+        iframe { 
+            width: 100%; max-width: 1000px; height: 560px; 
+            border: 3px solid #e50914; border-radius: 10px; 
+            box-shadow: 0px 0px 20px rgba(229, 9, 20, 0.5); 
+        }
+        .btn-voltar { display: inline-block; margin-top: 25px; color: white; background: #e50914; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="player-container">
+        <h1>A Reproduzir Filme</h1>
+        <iframe src="https://drive.google.com/file/d/1jwXxgLpvgK49V-8DXcuyEWSpVyFJ0QaG/preview" 
+                allow="autoplay" 
+                allowfullscreen="true" 
+                webkitallowfullscreen="true" 
+                mozallowfullscreen="true"></iframe>
+        <br>
+        <a href="filmes.html" class="btn-voltar">Sair e Voltar ao Catálogo</a>
+    </div>
+</body>
+</html>
