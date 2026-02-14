@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Nayma - Player</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #000; color: white; text-align: center; margin: 0; font-family: sans-serif; }
+        .container { padding: 20px; }
+        iframe { width: 100%; max-width: 1000px; height: 560px; border: 3px solid #e50914; border-radius: 10px; background: #111; }
+        .btn-voltar { display: inline-block; margin-top: 20px; color: white; background: #e50914; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="titulo-video">A carregar...</h1>
+        <div id="player"></div>
+        <br>
+        <a href="series.html" class="btn-voltar">Voltar à Lista</a>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        const ep = params.get('ep');
+
+        if (id) {
+            document.getElementById('titulo-video').innerText = "Originais - Episódio " + ep;
+            document.getElementById('player').innerHTML = `<iframe src="https://drive.google.com/file/d/${id}/preview" allowfullscreen="true"></iframe>`;
+        }
+    </script>
+</body>
+</html>
