@@ -1,3 +1,4 @@
+/* Configurações Globais */
 * {
     margin: 0;
     padding: 0;
@@ -7,83 +8,174 @@
 body {
     background-color: #141414;
     color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden; /* Evita que o site "dance" para os lados no telemóvel */
 }
 
+/* Header Responsivo */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
-    background-color: #000;
+    padding: 15px 5%;
+    background: rgba(0, 0, 0, 0.9);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap; /* Permite que o menu desça em ecrãs muito pequenos */
 }
 
 .logo {
     color: #e50914;
-    font-size: 32px;
+    font-size: 1.8rem;
     font-weight: bold;
-    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 nav ul {
     display: flex;
     list-style: none;
+    gap: 10px;
 }
 
-nav ul li {
-    margin-left: 25px;
-}
-
+/* Botões do Menu com Bordas */
 nav ul li a {
-    color: #fff;
+    color: #e5e5e5;
     text-decoration: none;
-    font-size: 16px;
-    transition: 0.3s;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
 nav ul li a:hover {
-    color: #b3b3b3;
+    color: white;
+    border-color: #e50914;
+    background-color: rgba(229, 9, 20, 0.15);
 }
 
+.nav-active {
+    border-color: #e50914 !important;
+    background-color: #e50914;
+    color: white !important;
+}
+
+/* Grid de Vitrine Inteligente */
 main {
-    padding: 50px;
+    padding: 20px 5%;
 }
 
 h2 {
-    margin-bottom: 25px;
-    font-size: 28px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
 }
 
 .vitrine {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+    display: grid;
+    /* Ajusta automaticamente o número de colunas conforme o tamanho do ecrã */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
 }
 
+/* Cards */
 .card {
-    width: 200px;
-    cursor: pointer;
-    transition: transform 0.3s;
+    background: #1f1f1f;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #333;
+    text-decoration: none;
+    color: white;
 }
 
 .card:hover {
     transform: scale(1.05);
+    border-color: #e50914;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.8);
 }
 
 .card img {
     width: 100%;
-    height: 280px;
+    aspect-ratio: 2/3; /* Mantém a proporção do poster correta */
     object-fit: cover;
-    border-radius: 4px;
+    display: block;
 }
 
 .card p {
-    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
     text-align: center;
     font-weight: bold;
 }
 
-.card a {
-    text-decoration: none;
+/* Barra de Busca Responsiva */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 0 5%;
+}
+
+#searchInput {
+    flex: 1;
+    max-width: 400px;
+    padding: 10px 15px;
+    border-radius: 20px 0 0 20px;
+    border: 1px solid #333;
+    background-color: #222;
     color: white;
+    font-size: 14px;
+}
+
+.search-container button {
+    padding: 10px 20px;
+    border-radius: 0 20px 20px 0;
+    border: none;
+    background-color: #e50914;
+    color: white;
+    cursor: pointer;
+}
+
+/* --- MEDIA QUERIES (O SEGREDO PARA CELULAR) --- */
+
+/* Ajustes para Telemóveis (Ecrãs até 600px) */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column; /* Logo em cima, menu em baixo */
+        gap: 15px;
+        padding: 10px;
+    }
+
+    nav ul {
+        width: 100%;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    nav ul li a {
+        font-size: 11px; /* Letras menores para caber tudo */
+        padding: 6px 8px;
+    }
+
+    .vitrine {
+        grid-template-columns: repeat(2, 1fr); /* 2 filmes por linha no telemóvel */
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+}
+
+/* Ajustes para ecrãs muito grandes (TVs e Monitores 4K) */
+@media (min-width: 1800px) {
+    .vitrine {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        max-width: 1600px;
+        margin: 0 auto;
+    }
 }
