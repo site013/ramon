@@ -5,17 +5,74 @@
     <title>Nayma - Streaming</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Estilos para o Perfil e Botão Sair no Topo */
+        .user-area {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #e50914; /* Vermelho Nayma */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%; /* Foto Redonda */
+            font-weight: bold;
+            font-size: 18px;
+            text-transform: uppercase;
+            font-family: Arial, sans-serif;
+            border: 2px solid white;
+        }
+
+        .btn-sair {
+            background: #e50914;
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-sair:hover {
+            background: white;
+            color: #e50914;
+        }
+
+        #nav-login { display: block; } 
+        #nav-perfil { display: none; }
+    </style>
 </head>
 <body>
     <header>
         <div class="logo">NAYMA</div>
+        
+        <div id="nav-login" style="position: absolute; top: 25px; right: 30px;">
+            <a href="login.html" style="color: white; text-decoration: none; font-weight: bold; background: #e50914; padding: 8px 20px; border-radius: 4px;">Login</a>
+        </div>
+
+        <div id="nav-perfil" class="user-area">
+            <div class="avatar" id="user-initial"></div>
+            <button class="btn-sair" onclick="confirmarSaida()">Sair</button>
+        </div>
+
         <nav>
             <ul>
-                <li><a href="index.html"style="color:#e50914">Início</a></li>
+                <li><a href="index.html" style="color:#e50914">Início</a></li>
                 <li><a href="filmes.html">Filmes</a></li>
                 <li><a href="series.html">Séries</a></li>
                 <li><a href="animes.html">Animes</a></li>
-                <li><a href="login.html">login</a></li>
             </ul>
         </nav>
     </header>
@@ -34,7 +91,7 @@
         <div class="vitrine">
             <div class="card">
                 <a href="animes.html">
-                    <img src=https://drive.google.com/thumbnail?id=1Sj8QjhCZ1kD25QK_JsRRSqc7jY6lk9I1&sz=w1000" alt="One Piece">
+                    <img src="https://drive.google.com/thumbnail?id=1Sj8QjhCZ1kD25QK_JsRRSqc7jY6lk9I1&sz=w1000" alt="One Piece">
                 </a>
             </div>
         </div>
@@ -47,7 +104,35 @@
                 </a>
             </div>
         </div>
-
     </main>
+
+    <script>
+        function verificarSessao() {
+            const usuario = JSON.parse(localStorage.getItem('usuario_sessao'));
+
+            if (usuario) {
+                document.getElementById('nav-login').style.display = 'none';
+                document.getElementById('nav-perfil').style.display = 'flex';
+                
+                const inicial = usuario.nome.charAt(0);
+                document.getElementById('user-initial').innerText = inicial;
+            }
+        }
+
+        // Função com Alerta de Confirmação
+        function confirmarSaida() {
+            const resposta = confirm("Você realmente deseja sair?");
+            if (resposta) {
+                fazerLogout();
+            }
+        }
+
+        function fazerLogout() {
+            localStorage.removeItem('usuario_sessao');
+            window.location.reload(); 
+        }
+
+        window.onload = verificarSessao;
+    </script>
 </body>
 </html>

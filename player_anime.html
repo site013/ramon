@@ -33,5 +33,34 @@
             document.getElementById('titulo-video').innerText = "Vídeo não encontrado";
         }
     </script>
+    
+    <script>
+    // Função para salvar onde o usuário parou
+    function salvarProgresso() {
+        const usuarioLogado = JSON.parse(localStorage.getItem('usuario_sessao'));
+        
+        if (usuarioLogado) {
+            const dadosPagina = {
+                url: window.location.href,
+                titulo: document.title,
+                data: new Date().toLocaleDateString()
+            };
+            
+            // Salva no perfil do usuário
+            let usuarios = JSON.parse(localStorage.getItem('usuarios_nayma') || "[]");
+            usuarios = usuarios.map(u => {
+                if (u.email === usuarioLogado.email) {
+                    u.ultimoVisto = dadosPagina;
+                }
+                return u;
+            });
+            
+            localStorage.setItem('usuarios_nayma', JSON.stringify(usuarios));
+        }
+    }
+
+    // Salva automaticamente assim que a página carrega
+    window.onload = salvarProgresso;
+</script>
 </body>
 </html>
