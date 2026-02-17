@@ -2,65 +2,49 @@
 <html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
-    <title>Nayma - Player Anime</title>
+    <title>Nayma - Player</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body { background: #000; color: white; text-align: center; margin: 0; font-family: sans-serif; }
         .container { padding: 20px; }
         iframe { width: 100%; max-width: 1000px; height: 560px; border: 3px solid #e50914; border-radius: 10px; background: #111; box-shadow: 0px 0px 20px rgba(229, 9, 20, 0.5); }
-        .btn-voltar { display: inline-block; margin-top: 20px; color: white; background: #e50914; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        .btn-voltar { display: inline-block; margin-top: 20px; color: white; background: #e50914; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
     </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div class="container">
         <h1 id="titulo-video">A carregar...</h1>
         <div id="player"></div>
         <br>
-        <a href="onepiece_lista.html" class="btn-voltar">Voltar à Lista</a>
+        <a onclick="history.back()" class="btn-voltar">Voltar à Lista</a>
     </div>
 
     <script>
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
         const ep = params.get('ep');
+        const animeNome = params.get('anime') || "Anime"; // Pega o nome do anime da URL
 
         if (id) {
-            // Lógica igual à das séries para mudar o título
-            document.getElementById('titulo-video').innerText = "One Piece - Episódio " + ep;
+            document.getElementById('titulo-video').innerText = animeNome + " - Episódio " + ep;
             document.getElementById('player').innerHTML = `<iframe src="https://drive.google.com/file/d/${id}/preview" allowfullscreen="true"></iframe>`;
         } else {
             document.getElementById('titulo-video').innerText = "Vídeo não encontrado";
         }
-    </script>
-    
-    <script>
-    // Função para salvar onde o usuário parou
-    function salvarProgresso() {
-        const usuarioLogado = JSON.parse(localStorage.getItem('usuario_sessao'));
-        
-        if (usuarioLogado) {
-            const dadosPagina = {
-                url: window.location.href,
-                titulo: document.title,
-                data: new Date().toLocaleDateString()
-            };
-            
-            // Salva no perfil do usuário
-            let usuarios = JSON.parse(localStorage.getItem('usuarios_nayma') || "[]");
-            usuarios = usuarios.map(u => {
-                if (u.email === usuarioLogado.email) {
-                    u.ultimoVisto = dadosPagina;
-                }
-                return u;
-            });
-            
-            localStorage.setItem('usuarios_nayma', JSON.stringify(usuarios));
-        }
-    }
 
-    // Salva automaticamente assim que a página carrega
-    window.onload = salvarProgresso;
-</script>
+        // Função de progresso (mantida do seu código)
+        window.onload = function() {
+            const usuarioLogado = JSON.parse(localStorage.getItem('usuario_sessao'));
+            if (usuarioLogado) {
+                const dadosPagina = { url: window.location.href, titulo: document.title, data: new Date().toLocaleDateString() };
+                let usuarios = JSON.parse(localStorage.getItem('usuarios_nayma') || "[]");
+                usuarios = usuarios.map(u => {
+                    if (u.email === usuarioLogado.email) { u.ultimoVisto = dadosPagina; }
+                    return u;
+                });
+                localStorage.setItem('usuarios_nayma', JSON.stringify(usuarios));
+            }
+        };
+    </script>
 </body>
 </html>
