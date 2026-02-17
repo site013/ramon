@@ -1,177 +1,16 @@
 :root {
     --vermelho-nayma: #e50914;
-    --preto-fundo: #141414;
-    --cinza-card: #1f1f1f;
+    --neon-glow: #ff0000;
+    --preto-fundo: #0a0a0a;
+    --cinza-card: #1a1a1a;
+    --bg-gradient: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.9) 100%);
     --transicao: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    background-color: var(--preto-fundo);
-    color: white;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    overflow-x: hidden;
+* { 
+    margin: 0; padding: 0; box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent;
 }
-
-/* --- HEADER --- */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 5%;
-    background: rgba(0, 0, 0, 0.95);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    flex-wrap: wrap;
-    border-bottom: 1px solid #222;
-}
-
-.logo {
-    color: var(--vermelho-nayma);
-    font-size: 1.6rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    cursor: pointer;
-}
-
-/* --- AREA DO USUÁRIO --- */
-.user-area {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.avatar {
-    width: 35px;
-    height: 35px;
-    background-color: var(--vermelho-nayma);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    font-weight: bold;
-    border: 1px solid white;
-}
-
-.btn-sair {
-    background: var(--vermelho-nayma);
-    border: none;
-    color: white;
-    padding: 6px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-weight: bold;
-    font-size: 12px;
-    transition: var(--transicao);
-}
-
-.btn-sair:hover {
-    background: white;
-    color: var(--vermelho-nayma);
-}
-
-/* --- NAVEGAÇÃO --- */
-nav { width: 100%; margin-top: 10px; }
-
-nav ul {
-    display: flex;
-    list-style: none;
-    justify-content: center;
-    gap: 8px;
-}
-
-nav ul li a {
-    color: #ccc;
-    text-decoration: none;
-    font-size: 12px;
-    padding: 6px 10px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    transition: var(--transicao);
-}
-
-nav ul li a:hover { color: white; border-color: #444; }
-
-.nav-active {
-    background: var(--vermelho-nayma);
-    color: white !important;
-}
-
-/* --- ANIMAÇÕES --- */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.animar-entrada {
-    opacity: 0;
-    animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* --- CARDS E VITRINE (AJUSTE DE TAMANHO) --- */
-main { padding: 15px 5%; }
-
-h2 { margin: 25px 0 15px; font-size: 1.2rem; color: #e5e5e5; }
-
-.vitrine {
-    display: grid;
-    /* Ajustado para posters menores e mais colunas */
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 12px;
-}
-
-.card {
-    background: var(--cinza-card);
-    border-radius: 6px;
-    overflow: hidden;
-    transition: var(--transicao);
-    border: 1px solid #333;
-    max-width: 180px; /* Limita o tamanho máximo do card no desktop */
-    margin: 0 auto;
-}
-
-.card:hover {
-    transform: scale(1.05);
-    border-color: var(--vermelho-nayma);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-}
-
-.card img { 
-    width: 100%; 
-    display: block; 
-    object-fit: cover; 
-    aspect-ratio: 2/3; 
-}
-
-.card p { padding: 6px; font-size: 11px; text-align: center; font-weight: bold; }
-
-/* --- RESPONSIVIDADE --- */
-@media (min-width: 768px) {
-    header { flex-wrap: nowrap; padding: 10px 5%; }
-    nav { width: auto; margin-top: 0; margin-left: 20px; }
-    nav ul { gap: 15px; }
-    .vitrine { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-    h2 { font-size: 1.5rem; }
-}
-
-@media (max-width: 600px) {
-    .vitrine { 
-        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); 
-        gap: 8px;
-    }
-    .card { max-width: 100%; }
-}:root {
-    --vermelho-nayma: #e50914;
-    --preto-fundo: #0a0a0a; /* Um pouco mais escuro para destacar os cards */
-    --cinza-card: #1a1a1a;
-    --bg-gradient: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
-    --transicao: all 0.3s ease;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     background-color: var(--preto-fundo);
@@ -180,12 +19,12 @@ body {
     overflow-x: hidden;
 }
 
-/* --- HEADER ESTILO APP --- */
+/* --- HEADER E NAV --- */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 4%;
+    padding: 10px 4%;
     background: #000;
     position: sticky;
     top: 0;
@@ -194,103 +33,106 @@ header {
 
 .logo {
     color: var(--vermelho-nayma);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 900;
-    letter-spacing: -1px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px var(--neon-glow);
+    text-decoration: none;
 }
 
-/* --- NAVEGAÇÃO EM CÁPSULAS --- */
-nav { width: 100%; padding: 10px 0; overflow-x: auto; white-space: nowrap; }
+nav {
+    width: 100%;
+    padding: 8px 0;
+    background: #000;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+nav::-webkit-scrollbar { display: none; }
 
 nav ul {
     display: flex;
     list-style: none;
-    gap: 10px;
+    gap: 8px;
     padding: 0 4%;
 }
 
 nav ul li a {
     color: #eee;
     text-decoration: none;
-    font-size: 13px;
-    padding: 8px 16px;
+    font-size: 12px;
+    padding: 6px 14px;
     background: #222;
-    border-radius: 20px; /* Cápsulas estilo app */
-    transition: var(--transicao);
-    display: inline-block;
+    border-radius: 20px;
 }
 
-.nav-active, nav ul li a:hover {
-    background: var(--vermelho-nayma) !important;
-    color: white !important;
-}
+.nav-active { background: var(--vermelho-nayma) !important; }
 
-/* --- VITRINE ESTILO SMARTPLAY --- */
+/* --- CONTEÚDO (TAMANHO CORRIGIDO) --- */
 main { padding: 10px 4%; }
 
 h2 { 
-    margin: 20px 0 15px; 
-    font-size: 1.1rem; 
-    text-transform: uppercase; 
-    letter-spacing: 1px;
-    border-left: 4px solid var(--vermelho-nayma);
+    margin: 15px 0; 
+    font-size: 1rem; 
+    text-transform: uppercase;
+    border-left: 3px solid var(--vermelho-nayma);
     padding-left: 10px;
 }
 
+/* Vitrine compacta como a original */
 .vitrine {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Tamanho pequeno base */
+    gap: 12px;
 }
 
-/* --- CARD COM OVERLAY --- */
+/* --- CARD COM ZOOM SEM ALTERAR TAMANHO DO GRID --- */
 .card {
     position: relative;
     background: var(--cinza-card);
-    border-radius: 12px; /* Cantos bem arredondados como na App */
-    overflow: hidden;
+    border-radius: 8px;
+    overflow: visible; /* Permite que o zoom saia para fora do card */
     transition: var(--transicao);
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
-.card:hover {
-    transform: translateY(-5px);
-}
+.card a { text-decoration: none; color: white; }
 
 .card img { 
     width: 100%; 
     display: block; 
     aspect-ratio: 2/3; 
     object-fit: cover;
+    border-radius: 8px;
+    transition: var(--transicao);
 }
 
-/* Legenda por cima da imagem com gradiente */
+/* Efeito de Ampliação Profissional */
+.card:hover {
+    transform: scale(1.2); /* Amplia 20% ao passar o mouse */
+    z-index: 100; /* Fica na frente de tudo */
+}
+
+.card:hover img {
+    box-shadow: 0 0 20px var(--neon-glow);
+    border-color: var(--vermelho-nayma);
+}
+
 .card p { 
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 20px 5px 8px;
-    font-size: 12px; 
+    bottom: 0; width: 100%;
+    padding: 20px 5px 5px;
+    font-size: 10px; 
     text-align: center; 
     background: var(--bg-gradient);
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    border-radius: 0 0 8px 8px;
+    font-weight: bold;
+    pointer-events: none; /* Não atrapalha o clique */
 }
 
-/* --- BOTÕES E AVATAR --- */
-.user-area { display: flex; align-items: center; gap: 12px; }
-.avatar {
-    width: 32px; height: 32px;
-    background: #333;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
-/* --- AJUSTES DESKTOP --- */
+/* Ajuste para telas maiores (PC) */
 @media (min-width: 768px) {
-    .vitrine { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-    .logo { font-size: 2.2rem; }
-    h2 { font-size: 1.4rem; }
-    nav { width: auto; overflow: hidden; }
+    .vitrine { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    h2 { font-size: 1.3rem; }
+    .card p { font-size: 12px; }
 }

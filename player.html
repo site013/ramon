@@ -1,57 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
-    <title>Nayma - Assistir</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nayma - Player</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .player-container {
-            margin-top: 100px;
-            text-align: center;
-            padding: 20px;
-        }
-        video {
-            width: 80%;
-            max-width: 1000px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
-        }
-        .btn-voltar {
-            display: inline-block;
-            margin-top: 20px;
-            color: white;
-            text-decoration: none;
-            background: #333;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
-    <header><div class="logo">NAYMA</div></header>
-
-    <div class="player-container">
-        <h2 id="video-titulo">Carregando...</h2>
+    <div style="max-width: 1000px; margin: 0 auto; padding: 20px;">
+        <h1 id="video-titulo" style="text-align: center; margin-bottom: 20px; font-size: 1.6rem;">A carregar...</h1>
         
-        <video id="video-player" controls autoplay>
-            <source id="video-src" src="" type="video/mp4">
-            Seu navegador não suporta este vídeo.
-        </video>
+        <div class="video-container">
+            <div id="player-frame"></div>
+        </div>
 
-        <br>
-        <a href="index.html" class="btn-voltar">← Voltar para o Início</a>
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="javascript:history.back()" class="btn-sair" style="text-decoration:none">Voltar ao Catálogo</a>
+        </div>
     </div>
 
     <script>
-        // Lógica para pegar o vídeo do link e colocar no player
-        const urlParams = new URLSearchParams(window.location.search);
-        const videoArquivo = urlParams.get('video');
-        const videoTitulo = urlParams.get('titulo');
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        const nome = params.get('nome') || "Vídeo";
 
-        if (videoArquivo) {
-            document.getElementById('video-src').src = videoArquivo;
-            document.getElementById('video-player').load();
-            document.getElementById('video-titulo').innerText = videoTitulo;
+        if (id) {
+            document.getElementById('video-titulo').innerText = nome;
+            document.getElementById('player-frame').innerHTML = `<iframe src="https://drive.google.com/file/d/${id}/preview" allowfullscreen></iframe>`;
         }
     </script>
 </body>
